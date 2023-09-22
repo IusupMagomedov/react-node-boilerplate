@@ -4,24 +4,24 @@ services:
     build: ./client
     container_name: client_c
     ports:
-      - '3000'
+      - '3000:3000'
     volumes:
-      - ./client:/react-app
-      - /react-app/node_modules
+      - ./client:/app
+      - /app/node_modules
     stdin_open: true
     tty: true
     depends_on:
-      - server
+      - api
     networks:
       - mern-network
-  server:
-    build: ./server
-    container_name: server_c
+  api:
+    build: ./api
+    container_name: api_c
     ports:
-      - '5000'
+      - '5000:5000'
     volumes:
-      - ./server:/node-app
-      - /node-app/node_modules
+      - ./api:/app
+      - /app/node_modules
     networks:
       - mern-network
 networks:
